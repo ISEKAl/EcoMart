@@ -1,0 +1,187 @@
+/* 商品列表页样式 */
+.productList {
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.mainContent {
+  /* 
+    Flex布局
+    要素：
+      容器：设置display: flex;
+      项目：容器的直接子元素
+      主轴：默认水平方向，项目沿着主轴排列
+      侧轴（交叉轴）：垂直于主轴，与主轴垂直
+      方向：flex-direction属性定义主轴方向
+        row（默认）：水平方向，主轴从左到右
+        row-reverse：水平方向，主轴从右到左
+        column：垂直方向，主轴从上到下
+        column-reverse：垂直方向，主轴从下到上
+      
+      项目属性
+        order：定义项目的排列顺序，默认值为0
+
+        flex-grow：允许项目在有剩余空间时放大
+        flex-shrink：允许项目在空间不足时缩小
+        flex-basis：定义项目的初始尺寸
+
+        flex：上面三个属性的简写
+      
+      容器属性
+        display：flex
+        flex-direction：定义主轴方向
+        justify-content：定义项目在主轴上的对齐方式,默认起点对齐，还有终点，居中，两端对齐等等
+        align-items：定义项目在交叉轴轴上的对齐方式, 默认拉伸填满交叉轴，还有起点，终点，居中等
+        flex-wrap：定义项目是否换行，默认不换行，还有换行，反方向换行（往上方换行）
+        align-cotent：定义多行对齐方式，默认拉伸填满交叉轴，还有起点，终点，居中，等
+  */
+
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.filterSection {
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.affix {
+    margin-top: 100px;
+    /* PC模式下再怎么拉f12,筛选栏宽度至少为300px */
+    width: max(300px, 15%);
+  }
+
+.productSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.productGrid {
+  /* 
+    Grid布局，与flex同类型的布局，可以实现二维布局
+    要素：
+      网格容器:设置display: grid;
+      网格项:容器的直接子元素
+      网格线：分割网格的水平和垂直线，编号从1开始
+      网格轨道：网格线之间的空间，也可以理解为网格的列或行
+      网格区域：多个网格单元格组成的矩形区域（用于选中grid的子集）
+    
+      示例：
+      display: grid;
+      /* 定义3列，宽度分别为200px、1fr、2fr 
+      grid-template-columns: 200px 1fr 2fr;
+      /* 定义2行，高度分别为100px和auto 
+      grid-template-rows: 100px auto;
+      /* 网格间距（行间距10px，列间距20px）
+      gap: 10px 20px;
+
+  */
+  display: grid;
+  /*                            auto-fill:尽可能多创造轨道,即每个轨道会倾向取最小值
+                                那么这个max:1fr有什么用?
+                                经过测试，这个max:1fr用于轨道的填充 
+                                即首先根据最小值计算出整个页面可能支持3.5个轨道
+                                如果不设置max:1fr,那么网格就是严格的240px的三个轨道.还剩0.5
+                                如果设置max:1fr,那么网格轨道依然会是三个，但是会按照1fr的比例填充页面
+                                即这个max是在不减少轨道数量的前提下，填充页面剩余空间
+                                */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+.productHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center ;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e6eb;
+}
+
+.productTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d2129;
+  margin: 0;
+}
+
+
+
+.paginationSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  border-top: 1px solid #e5e6eb;
+}
+
+.resultInfo {
+  font-size: 14px;
+  color: #666e75;
+  margin-right: 20px;
+}
+
+/* 响应式样式 - 手机端 */
+@media (max-width:768px) {
+  /* 主内容区域改为垂直布局 */
+  .productList{
+    width: 100%;
+    /* background-color: #000000; */
+  }
+  .container {
+    width: 100%;
+  }
+  .mainContent {
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 0;
+    width: 100%;
+    margin-top: 0;
+    /* background-color: #000000; */
+  }
+  .affix {
+    margin-top:0;
+    transform: translateY(-1px);
+    /* background-color: #2d4b97; */
+    width: 100%;
+  }
+  /* 筛选栏改为100%宽度，在顶部显示 */
+  .filterSection {
+    width: 100%;
+  }
+  
+  /* 商品网格调整为2列 */
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 0 10px 0 10px; 
+  }
+  
+  .productHeader {
+    align-items: baseline;
+    padding: 0 0px 0 20px;
+    /* background-color: #0a0a0a; */
+  }
+
+  .resultInfo {
+    font-size: 14px;
+    color: #666e75;
+    margin-right: 20px;
+  }
+  
+  /* 减少分页区域内边距 */
+  .paginationSection {
+    padding: 10px 0;
+  }
+}
