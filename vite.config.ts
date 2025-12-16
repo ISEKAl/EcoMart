@@ -24,4 +24,6 @@ export default defineConfig({
     port: 3000,
     open: true,
   },
+  // GitHub Pages 部署配置
+  base: '/EcoMart/',
 })
