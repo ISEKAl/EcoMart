@@ -45,9 +45,10 @@ interface ProductDetail extends Product {
 import axios from 'axios';
 // 引入Mock配置，初始化mock
 import '../mock';
+import { config } from '../config';
 
 // 配置axios基础路径
-axios.defaults.baseURL = '/api';
+axios.defaults.baseURL = config.apiBaseUrl;
 
 // 筛选条件接口
 interface Filters {

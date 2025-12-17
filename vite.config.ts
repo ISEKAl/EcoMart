@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 // 正确导入：@arco-plugins/vite-react 是命名导出，需用 {} 解构
 import { vitePluginForArco } from '@arco-plugins/vite-react'
+import { config } from './src/config'
 
 export default defineConfig({
   plugins: [
@@ -24,5 +25,5 @@ export default defineConfig({
     port: 3000,
     open: true,
   },
-  base: '/EcoMart/',
+  base: config.basePath,
 })

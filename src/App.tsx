@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/common/Layout'
 import ProductList from './components/pages/ProductList'
 import ProductDetail from './components/pages/ProductDetail'
+import { config } from './config'
 
 //√ 实现购物车弹窗
 //√ 实现列表页的筛选排序功能
@@ -36,7 +37,7 @@ import ProductDetail from './components/pages/ProductDetail'
 function App() {
   return (
     <div className="app">
-      <BrowserRouter>
+      <BrowserRouter basename={config.basePath}>
         <Layout>
           <Routes>
             {/* 商品列表页路由 */}
