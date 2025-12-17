@@ -6,6 +6,7 @@ import { Typography, Badge } from '@arco-design/web-react';
 import useCartStore from '../../stores/cartStore';
 // import { IconHome } from '@arco-design/web-react/icon';
 import { NavLink } from 'react-router-dom';
+import { config } from '../../config';
 
 const Navbar: React.FC = () => {
   // 从cartStore获取需要的状态和方法
@@ -26,7 +27,7 @@ const Navbar: React.FC = () => {
 
   return (
     <header className={styles.navbar}>
-      <a href="/" className={styles.logo}>
+      <a href={config.basePath} className={styles.logo}>
         <Typography.Title bold={true} heading={4} style={{ margin: 0, color: '#206CCF' }}>
           商品商城
         </Typography.Title>
@@ -37,7 +38,7 @@ const Navbar: React.FC = () => {
         {menuItems.map((item) => (
           <NavLink
             key={item.path}
-            to={item.path}
+            to={config.basePath + item.path}
             className={({ isActive }) =>
               `${styles.navItem} ${styles.navMenuItem} ${isActive ? styles.active : ''}`
             }
