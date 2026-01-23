@@ -46,8 +46,6 @@ const ProductCard: React.FC<{product: Product, loading?: boolean}> = ({product, 
           setCurrentProduct(product);
           navigate(`/product/${product.id}`)
         }}
-
-
       //封面=商品缩略图
       cover={
         <Skeleton
